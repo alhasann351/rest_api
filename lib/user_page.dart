@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'user_model.dart';
+import 'models/user_model.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
