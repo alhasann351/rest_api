@@ -22,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
+      postsModelList.clear();
       for (Map<dynamic, dynamic> posts in data) {
         postsModelList.add(PostsModel.fromJson(posts));
       }

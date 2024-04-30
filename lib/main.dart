@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_api/api_integration.dart';
 import 'my_home_page.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: ApiIntegration(),
     );
   }
 }
