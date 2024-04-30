@@ -43,3 +43,37 @@ class _WithoutModelCreate extends State<WithoutModelCreate> {
     );
   }
 }
+
+class ReusableRow extends StatelessWidget {
+  String title, value;
+
+  ReusableRow({super.key, required this.title, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
