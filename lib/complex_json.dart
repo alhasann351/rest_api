@@ -54,10 +54,15 @@ class _ComplexJsonState extends State<ComplexJson> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          ListTile(
+                            title: Text(snapshot.data!.data![index].shop!.shopaddress.toString()),
+                            subtitle: Text(snapshot.data!.data![index].shop!.shopemail.toString()),
+                            leading: CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.data![index].shop!.image.toString()),),
+                          ),
                           Container(
                             height: MediaQuery.of(context).size.height * 0.3,
                             width: MediaQuery.of(context).size.width * 1,
-                            color: Colors.red,
+                            //color: Colors.red,
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: snapshot.data!.data![index].images!.length,
