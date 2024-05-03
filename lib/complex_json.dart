@@ -58,6 +58,7 @@ class _ComplexJsonState extends State<ComplexJson> {
                             title: Text(snapshot.data!.data![index].shop!.shopaddress.toString()),
                             subtitle: Text(snapshot.data!.data![index].shop!.shopemail.toString()),
                             leading: CircleAvatar(backgroundImage: NetworkImage(snapshot.data!.data![index].shop!.image.toString()),),
+                            trailing: Icon(snapshot.data!.data![index].inWishlist! == false ? Icons.favorite_border_rounded : Icons.favorite_rounded, color: Colors.red,),
                           ),
                           Container(
                             height: MediaQuery.of(context).size.height * 0.3,
