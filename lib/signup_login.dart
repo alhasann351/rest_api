@@ -43,240 +43,243 @@ class _SignupLoginState extends State<SignupLogin> {
           ),
         ),
       ),
-      body: Form(
-        key: formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          //crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                controller: fullNameController,
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '*Required';
-                  }
-                  if (value.length > 30) {
-                    return 'Enter 30 Character';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.person_outlined,
-                      color: Colors.grey,
-                    ),
-                    labelText: 'Full Name',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                controller: mobileController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '*Required';
-                  }
-                  if (value.length > 11) {
-                    return 'Enter 11 Number';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.call,
-                      color: Colors.grey,
-                    ),
-                    labelText: 'Mobile Number',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                controller: emailController,
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '*Required';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.email_outlined,
-                      color: Colors.grey,
-                    ),
-                    labelText: 'Email',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                controller: userNameController,
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '*Required';
-                  }
-                  if (value.length > 10) {
-                    return 'Enter 10 Character';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.person_outline,
-                      color: Colors.grey,
-                    ),
-                    labelText: 'User Name',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: TextFormField(
-                controller: passwordController,
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '*Required';
-                  }
-                  if (value.length > 12 || value.length < 6) {
-                    return 'Password must be less than 12 or more than 6 character';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.password_outlined,
-                      color: Colors.grey,
-                    ),
-                    labelText: 'Password',
-                    labelStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: const BorderSide(
-                        width: 2,
-                        color: Colors.grey,
-                      ),
-                    )),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SizedBox(
-                height: 55,
-                width: 280,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _signup();
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextFormField(
+                  controller: fullNameController,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required';
+                    }
+                    if (value.length > 30) {
+                      return 'Enter 30 Character';
+                    }
+                    return null;
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    elevation: 15,
-                  ),
-                  child: const Text(
-                    'Signup',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.person_outlined,
+                        color: Colors.grey,
+                      ),
+                      labelText: 'Full Name',
+                      labelStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      )),
                 ),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextFormField(
+                  controller: mobileController,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required';
+                    }
+                    if (value.length > 11) {
+                      return 'Enter 11 Number';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.call,
+                        color: Colors.grey,
+                      ),
+                      labelText: 'Mobile Number',
+                      labelStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      )),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextFormField(
+                  controller: emailController,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey,
+                      ),
+                      labelText: 'Email',
+                      labelStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      )),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextFormField(
+                  controller: userNameController,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required';
+                    }
+                    if (value.length > 10) {
+                      return 'Enter 10 Character';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.person_outline,
+                        color: Colors.grey,
+                      ),
+                      labelText: 'User Name',
+                      labelStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      )),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextFormField(
+                  controller: passwordController,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return '*Required';
+                    }
+                    if (value.length > 12 || value.length < 6) {
+                      return 'Password must be less than 12 or more than 6 character';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.password_outlined,
+                        color: Colors.grey,
+                      ),
+                      labelText: 'Password',
+                      labelStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: const BorderSide(
+                          width: 2,
+                          color: Colors.grey,
+                        ),
+                      )),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  height: 55,
+                  width: 280,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _signup();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      elevation: 15,
+                    ),
+                    child: const Text(
+                      'Signup',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void _signup() async{
-    if(formKey.currentState!.validate()){
+  void _signup() async {
+    if (formKey.currentState!.validate()) {
       String name = fullNameController.text.toString();
       String mobile = mobileController.text.toString();
       String email = emailController.text.toString();
@@ -289,7 +292,28 @@ class _SignupLoginState extends State<SignupLogin> {
       userNameController.clear();
       passwordController.clear();
 
-      print('$name\n$mobile\n$email\n$userName\n$password');
+      try {
+        Response response = await post(
+          Uri.parse('https://signuplogin.myanmarpyitharnews.com/signup.php'),
+          body: {
+            'fullname' : name,
+            'mobile' : mobile,
+            'email' : email,
+            'username' : userName,
+            'password' : password,
+          },
+        );
+
+        if(response.statusCode == 200){
+          print('Signup Successfully');
+        }else{
+          print('Signup Failed');
+        }
+      } catch (e) {
+        print(e.toString());
+      }
+
+      //print('$name\n$mobile\n$email\n$userName\n$password');
     }
   }
 }
