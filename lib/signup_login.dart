@@ -278,7 +278,10 @@ class _SignupLoginState extends State<SignupLogin> {
                   width: 280,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
@@ -316,20 +319,20 @@ class _SignupLoginState extends State<SignupLogin> {
       passwordController.clear();
 
       try {
-        Response response = await post(
+        Response response = await http.post(
           Uri.parse('https://signuplogin.myanmarpyitharnews.com/signup.php'),
           body: {
-            'fullname' : name,
-            'mobile' : mobile,
-            'email' : email,
-            'username' : userName,
-            'password' : password,
+            'fullname': name,
+            'mobile': mobile,
+            'email': email,
+            'username': userName,
+            'password': password,
           },
         );
 
-        if(response.statusCode == 200){
+        if (response.statusCode == 200) {
           print('Signup Successfully');
-        }else{
+        } else {
           print('Signup Failed');
         }
       } catch (e) {
@@ -349,12 +352,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   var userNameController = TextEditingController();
-  var emailController = TextEditingController();
+
+  //var emailController = TextEditingController();
   var passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    //emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -372,52 +383,52 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       body: Form(
-      key: formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: TextFormField(
-              controller: userNameController,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return '*Required';
-                }
-                if (value.length > 10) {
-                  return 'Enter 10 Character';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.person_outline,
-                    color: Colors.grey,
-                  ),
-                  labelText: 'User Name',
-                  labelStyle: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                      width: 2,
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: TextFormField(
+                controller: userNameController,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '*Required';
+                  }
+                  if (value.length > 10) {
+                    return 'Enter 10 Character';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.person_outline,
                       color: Colors.grey,
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Colors.grey,
+                    labelText: 'User Name',
+                    labelStyle: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
-                  )),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Colors.grey,
+                      ),
+                    )),
+              ),
             ),
-          ),
-          Padding(
+            /*Padding(
             padding: const EdgeInsets.all(15),
             child: TextFormField(
               controller: emailController,
@@ -453,98 +464,134 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   )),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: TextFormField(
-              controller: passwordController,
-              keyboardType: TextInputType.text,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return '*Required';
-                }
-                if (value.length > 12 || value.length < 6) {
-                  return 'Password must be less than 12 or more than 6 character';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(
-                    Icons.password_outlined,
-                    color: Colors.grey,
-                  ),
-                  labelText: 'Password',
-                  labelStyle: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: const BorderSide(
-                      width: 2,
-                      color: Colors.grey,
-                    ),
-                  )),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: SizedBox(
-              height: 55,
-              width: 280,
-              child: ElevatedButton(
-                onPressed: () {
-                  //_login();
+          ),*/
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: TextFormField(
+                controller: passwordController,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '*Required';
+                  }
+                  if (value.length > 12 || value.length < 6) {
+                    return 'Password must be less than 12 or more than 6 character';
+                  }
+                  return null;
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  elevation: 15,
-                ),
-                child: const Text(
-                  'Login',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.password_outlined,
+                      color: Colors.grey,
+                    ),
+                    labelText: 'Password',
+                    labelStyle: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Colors.grey,
+                      ),
+                    )),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                height: 55,
+                width: 280,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _login();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    elevation: 15,
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: SizedBox(
-              height: 55,
-              width: 280,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupLogin()));
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  elevation: 15,
-                ),
-                child: const Text(
-                  'Signup Page Here',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: SizedBox(
+                height: 55,
+                width: 280,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignupLogin()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    elevation: 15,
+                  ),
+                  child: const Text(
+                    'Signup Page Here',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 
-}
+  void _login() async {
+    if (formKey.currentState!.validate()) {
+      String userName = userNameController.text.toString();
+      //String email = emailController.text.toString();
+      String password = passwordController.text.toString();
 
+      userNameController.clear();
+      //emailController.clear();
+      passwordController.clear();
+
+      try {
+        Response response = await http.post(
+            Uri.parse('https://signuplogin.myanmarpyitharnews.com/login.php'),
+            body: {
+              'username': userName,
+              'password': password,
+            });
+
+        if (response.statusCode == 200 && response.body == 'Login Success') {
+          print('Login Successfully');
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Login Success'),
+          ));
+        } else {
+          print('Login Failed');
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Login Failed'),
+          ));
+        }
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+  }
+}
