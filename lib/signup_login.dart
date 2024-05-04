@@ -270,7 +270,30 @@ class _SignupLoginState extends State<SignupLogin> {
                     ),
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  height: 55,
+                  width: 280,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      elevation: 15,
+                    ),
+                    child: const Text(
+                      'Login Page Here',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -317,3 +340,211 @@ class _SignupLoginState extends State<SignupLogin> {
     }
   }
 }
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  var userNameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      body: Form(
+      key: formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: TextFormField(
+              controller: userNameController,
+              keyboardType: TextInputType.text,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '*Required';
+                }
+                if (value.length > 10) {
+                  return 'Enter 10 Character';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.person_outline,
+                    color: Colors.grey,
+                  ),
+                  labelText: 'User Name',
+                  labelStyle: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: TextFormField(
+              controller: emailController,
+              keyboardType: TextInputType.text,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '*Required';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.email_outlined,
+                    color: Colors.grey,
+                  ),
+                  labelText: 'Email',
+                  labelStyle: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: TextFormField(
+              controller: passwordController,
+              keyboardType: TextInputType.text,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return '*Required';
+                }
+                if (value.length > 12 || value.length < 6) {
+                  return 'Password must be less than 12 or more than 6 character';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.password_outlined,
+                    color: Colors.grey,
+                  ),
+                  labelText: 'Password',
+                  labelStyle: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      width: 2,
+                      color: Colors.grey,
+                    ),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: SizedBox(
+              height: 55,
+              width: 280,
+              child: ElevatedButton(
+                onPressed: () {
+                  //_login();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  elevation: 15,
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: SizedBox(
+              height: 55,
+              width: 280,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupLogin()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  elevation: 15,
+                ),
+                child: const Text(
+                  'Signup Page Here',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+    );
+  }
+
+}
+
